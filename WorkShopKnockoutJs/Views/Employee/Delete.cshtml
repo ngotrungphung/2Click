@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Delete";
+}
+<div id="page-wrapper">
+    <h2>Delete</h2>
+    <h3>Are you sure you want to delete this?</h3>
+    @using(Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Employee</h4>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="FirstName">First Name</label>
+                <div class="col-md-10">
+                    <label id="FirstName" name="FirstName"  data-bind="text: FirstName"></label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="LastName">Last Name</label>
+                <div class="col-md-10">
+                    <label id="LastName" name="LastName" data-bind="text: LastName"></label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="Address">Address</label>
+                <div class="col-md-10">
+                    <label id="Address" name="Address"  data-bind="text: Address"></label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" data-bind="click: deleteEmployee" value="Delete" class="btn btn-default">
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Read")
+    </div>    </div>
+    @section Scripts{
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/knockout")
+        @Scripts.Render("~/bundles/Employee")
+        <script type="text/javascript">
+
+    var modelUpdate;
+        $(function () {
+           
+        var selectedEmployee = '@Html.Raw(ViewBag.selectedEmployee)';
+            console.log(selectedEmployee);
+
+            modelUpdate = new WebTraining.EmployeesDeleteViewModel(selectedEmployee);
+
+        ko.applyBindings(modelUpdate);
+    });
+        </script>
+
+    }
+

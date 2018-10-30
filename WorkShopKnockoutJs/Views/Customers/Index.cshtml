@@ -1,0 +1,59 @@
+﻿<div id="page-wrapper">
+    <p>
+        <button class="btn btn-primary" id="create">Create</button>
+    </p>
+    <table class="table table-striped table-bordered table-hover" id="customerList">
+        <thead>
+            <tr>
+                <th>
+                    CustomerID
+                </th>
+                <th>
+                    CompanyName
+                </th>
+                <th>
+                    ContactName
+                </th>
+                <th></th>
+            </tr>
+        </thead>  
+
+        <tbody data-bind="foreach: customerList">
+            <tr data-bind="template: { name: Mode, data: $data }"></tr>
+        </tbody>
+    </table>
+
+    <script type="text/html" id="display">
+        <td data-bind="text: CustomerID"></td>
+        <td data-bind="text: CompanyName"></td>
+        <td data-bind="text: ContactName"></td>
+        <td>
+            <button class="btn btn-success kout-edit">Edit</button>
+            <button class="btn btn-danger kout-delete">Delete</button>
+        </td>
+    </script>
+
+    <script type="text/html" id="edit">
+        <td><input type="text" data-bind="value: CustomerID" /></td>
+        <td><input type="text" data-bind="value: CompanyName" /></td>
+        <td><input type="text" data-bind="value: ContactName" /></td>
+        <td>
+            <button class="btn btn-success kout-update">Update</button>
+            <button class="btn btn-danger kout-cancel">Cancel</button>
+        </td>
+    </script>
+    @section Scripts{        
+        @Scripts.Render("~/bundles/Customers")
+
+    <script type="text/javascript">
+    //var customerViewModel;
+
+    //    $(document).ready(function () {
+    //        customerViewModel = new Customers.CustomersViewModel();
+    //        ko.applyBindings(customerViewModel);
+    //    });
+    </script>
+    }
+
+
+</div>

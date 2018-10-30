@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<div id="page-wrapper">
+    <h2>Index</h2>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Employee ID
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Address
+            </th>
+            <th></th>
+        </tr>
+        <tbody data-bind="foreach: Employees">
+            <tr>
+                <td data-bind="text: EmployeeID"></td>
+                <td data-bind="text: FirstName"></td>
+                <td data-bind="text: LastName"></td>
+                <td data-bind="text: Address"></td>
+                <td>
+                    <a data-bind="attr: { 'href': EditUrl }" class="btn-link">Edit</a>
+                    <a data-bind="attr: { 'href': DeleteUrl}" class="btn-link">Delete</a>
+
+                    <button class="btn btn-danger fa fa-times" style="padding: 10px; display: block; margin: auto;"  data-toggle="modal" data-target="#myModal" data-placement="top" title="Delete Category"></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+              
+            
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts{
+  
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/Employee")
+    <script type="text/javascript">
+        var modelView;
+
+        $(function () {
+            modelView = new WebTraining.EmployeesViewModel();
+            ko.applyBindings(modelView);
+
+        });
+    </script>
+}
+
